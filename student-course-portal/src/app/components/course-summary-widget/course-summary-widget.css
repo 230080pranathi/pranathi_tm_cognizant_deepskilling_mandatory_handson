@@ -1,0 +1,11 @@
+.summary-widget {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  width: 300px;
+}
+
+.summary-widget h3 {
+  margin-top: 0;
+}

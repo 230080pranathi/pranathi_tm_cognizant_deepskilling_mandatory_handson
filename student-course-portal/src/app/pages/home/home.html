@@ -1,69 +1,15 @@
-<div class="home-container">
+<h1>{{ portalName }}</h1>
 
-  <!-- ========================================= -->
-  <!-- TASK 1: INTERPOLATION -->
-  <!-- ========================================= -->
+<p>Welcome to the Student Course Portal.</p>
 
-  <h1>{{ portalName }}</h1>
+<button (click)="onEnrollClick()">
+  Enroll Now
+</button>
 
-  <p>Welcome to the Student Course Portal.</p>
+<p *ngIf="message">
+  {{ message }}
+</p>
 
-
-  <!-- ========================================= -->
-  <!-- TASK 1: PROPERTY BINDING + EVENT BINDING -->
-  <!-- ========================================= -->
-
-  <button
-    [disabled]="!isPortalActive"
-    (click)="onEnrollClick()">
-    Enroll Now
-  </button>
-
-  <!-- Display message after clicking Enroll Now -->
-  <p *ngIf="message">
-    {{ message }}
-  </p>
-
-
-  <!-- ========================================= -->
-  <!-- DISPLAY AVAILABLE COURSES -->
-  <!-- ========================================= -->
-
-  <p>
-    Available Courses: {{ availableCourses }}
-  </p>
-
-
-  <!-- ========================================= -->
-  <!-- TASK 1: TWO-WAY BINDING -->
-  <!-- ========================================= -->
-
-  <div class="search-container">
-
-    <label for="search">
-      Search Courses:
-    </label>
-
-    <input
-      id="search"
-      type="text"
-      [(ngModel)]="searchTerm"
-      placeholder="Enter course name">
-
-  </div>
-
-  <!-- Display live search value -->
-  <p>
-    Searching for: {{ searchTerm }}
-  </p>
-
-
-  <!-- ========================================= -->
-  <!-- COURSE LIST -->
-  <!-- ========================================= -->
-
-  <hr>
-
-  <app-course-list></app-course-list>
-
-</div>
+<p>
+  Available Courses: {{ availableCourses }}
+</p>

@@ -1,16 +1,14 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CourseList } from '../course-list/course-list';
 import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-home',
+  standalone: true,
   imports: [
     FormsModule,
-    CourseList,
     NgIf
-
-],
+  ],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })

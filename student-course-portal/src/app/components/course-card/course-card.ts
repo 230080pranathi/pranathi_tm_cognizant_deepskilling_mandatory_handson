@@ -1,44 +1,46 @@
-import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  OnChanges,
-  SimpleChanges
-} from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { Course } from '../../models/course';
+import { EnrollmentService } from '../../services/enrollment';
 
 @Component({
   selector: 'app-course-card',
-  imports: [],
+  standalone: true,
+  imports: [
+    CommonModule
+  ],
   templateUrl: './course-card.html',
   styleUrl: './course-card.css'
 })
-export class CourseCard implements OnChanges {
+export class CourseCard {
 
-  @Input() course: {
-    id: number;
-    name: string;
-    code: string;
-    credits: number;
-  } = {
-    id: 0,
-    name: '',
-    code: '',
-    credits: 0
-  };
+  @Input() course!: Course;
 
-  @Output() enrollRequested = new EventEmitter<number>();
+  constructor(
+    private enrollmentService: EnrollmentService
+  ) {}
 
-  ngOnChanges(changes: SimpleChanges): void {
+  isEnrolled(courseId: number): boolean {
 
-    if (changes['course']) {
-      console.log(
-        'Course changed:',
-        'Previous value:',
-        changes['course'].previousValue,
-        'Current value:',
-        changes['course'].currentValue
+    return this.enrollmentService.isEnrolled(courseId);
+
+  }
+
+  toggleEnrollment(): void {
+
+    if (this.isEnrolled(this.course.id)) {
+
+      this.enrollmentService.unenroll(
+        this.course.id
       );
+
+    } else {
+
+      this.enrollmentService.enroll(
+        this.course.id
+      );
+
     }
 
   }
